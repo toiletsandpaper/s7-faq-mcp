@@ -6,26 +6,31 @@ app = marimo.App(width="medium")
 
 @app.cell
 def _():
+    import os
+
     import marimo as mo
+    from dotenv import load_dotenv, find_dotenv
     from smolagents import MCPClient, CodeAgent, OpenAIServerModel, ToolCallingAgent
     from mcp import StdioServerParameters
+
+    load_dotenv(find_dotenv(raise_error_if_not_found=True))
     return (
         MCPClient,
         OpenAIServerModel,
         StdioServerParameters,
         ToolCallingAgent,
         mo,
+        os,
     )
 
 
 @app.cell
-def _(OpenAIServerModel, StdioServerParameters):
+def _(OpenAIServerModel, StdioServerParameters, os):
     MODEL = OpenAIServerModel(
-        model_id="gemma-3-12b-it",
-        api_base="http://127.0.0.1:1234/v1",
-        api_key="lm-studio",
+        model_id=os.environ["MODEL_ID"],
+        api_base=os.environ["API_BASE"],
+        api_key=os.environ["API_KEY"],
     )
-
     server_parameters = StdioServerParameters(
         command="uv",
         args=["run", "fastmcp", "run", "src/server.py", "--transport", "stdio"],

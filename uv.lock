@@ -870,6 +870,7 @@ dependencies = [
     { name = "httpx" },
     { name = "icecream" },
     { name = "pydantic" },
+    { name = "python-dotenv" },
     { name = "smolagents", extra = ["mcp", "openai"] },
 ]
 
@@ -887,6 +888,7 @@ requires-dist = [
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "icecream", specifier = ">=2.1.4" },
     { name = "pydantic", specifier = ">=2.11.5" },
+    { name = "python-dotenv", specifier = ">=1.1.0" },
     { name = "smolagents", extras = ["mcp", "openai"], specifier = ">=1.16.1" },
 ]
 

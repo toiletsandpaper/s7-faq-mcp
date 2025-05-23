@@ -1,11 +1,16 @@
-from icecream import ic
-from smolagents import MCPClient, CodeAgent, OpenAIServerModel, ToolCallingAgent
+import os
+from dotenv import load_dotenv, find_dotenv
+from smolagents import MCPClient, OpenAIServerModel, ToolCallingAgent
 from mcp import StdioServerParameters
 
+load_dotenv(find_dotenv(raise_error_if_not_found=True))
+
+
+
 MODEL = OpenAIServerModel(
-    model_id="gemma-3-12b-it",
-    api_base="http://127.0.0.1:1234/v1",
-    api_key="lm-studio",
+    model_id=os.environ["MODEL_ID"],
+    api_base=os.environ["API_BASE"],
+    api_key=os.environ["API_KEY"],
 )
 
 server_parameters = StdioServerParameters(
@@ -14,5 +19,8 @@ server_parameters = StdioServerParameters(
 )
 
 with MCPClient(server_parameters) as tools:
+    default_query = "Билеты в Ростов-на-Дону"
+    query = input(f"Enter your query or press ENTER to use default\n\nQuery [{default_query=}]: ")
+    query = query or default_query
     agent = ToolCallingAgent(tools=tools, model=MODEL)#, add_base_tools=True)
     result = agent.run("Билеты в Ростов-на-Дону", max_steps=2)
