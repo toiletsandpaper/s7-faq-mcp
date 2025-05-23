@@ -5,12 +5,18 @@ This is a simple example of how to use the S7 FAQ search function as MCP server 
 > [!IMPORTANT]
 > This repo is only a demo and not a production-ready code. It is meant to be used as a reference for building your own S7 FAQ search function.
 
+---
+
 ## Quick Preview
 
-- For a non-executable notebook preview please follow: [Marimo static notebook](https://static.marimo.app/static/s7-mcp-example-m1nz)
-- Text foldable section: 
+### Simple fancy preview
+
+For a non-executable notebook preview please follow: [Marimo static notebook](https://static.marimo.app/static/s7-mcp-example-m1nz)
+
+### Messy long output:
+
 <details>
-<summary>Stdio Logs</summary>
+<summary><b>Stdio Logs (click me)</b></summary>
 
 ```bash
  ❯ uv run src/agent.py                                                
@@ -78,6 +84,8 @@ Final answer: Согласно предоставленной информаци
 ```
 
 </details>
+
+---
 
 ## How to run this example
 
